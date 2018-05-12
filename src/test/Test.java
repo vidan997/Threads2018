@@ -17,19 +17,23 @@ public class Test {
     
     private Singer pattiSmith;
     private Singer bruceSpringsteen;
+    private Singer backVoice;
     
     private void initializeSingingInThreads() {
-        String lyrics1 = "Because the night";
-        String lyrics2 = "Belongs to lovers";
+        String lyrics1 = "Because the night belongs to lovers";
+        String lyrics2 = "Because the night belongs to us";
+        String lyrics3 = "(Because the night)";
         
         boolean stopIt = false;
-        Synchronizer synch = new Synchronizer(true);
+        Synchronizer synch = new Synchronizer(true,false,false);
         
         Performance firstVoicePerformance = new Performance(lyrics1, 1500);
         Performance secondVoicePerformance = new Performance(lyrics2, 1500);
+        Performance backVoicePerformance = new Performance(lyrics3, 1500);
         
         pattiSmith = new Singer("Patti Smith", Voice.FIRST, firstVoicePerformance, stopIt, synch);
         bruceSpringsteen = new Singer("Bruce Springsteen", Voice.SECOND, secondVoicePerformance, stopIt, synch);
+        backVoice = new Singer("BackVoice", Voice.BACKGROUND, backVoicePerformance,stopIt,synch);
     }
     
     public void testSingInThreads() {
@@ -38,10 +42,12 @@ public class Test {
         
         pattiSmith.start();
         bruceSpringsteen.start();
+        backVoice.start();
         
         IN.nextLine();
         pattiSmith.setStopIt(true);
         bruceSpringsteen.setStopIt(true);
+        backVoice.setStopIt(true);
         
     }
     
