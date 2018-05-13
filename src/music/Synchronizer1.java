@@ -1,20 +1,19 @@
-/*
- * Created on May 10, 2018
- *
- */
 package music;
 
-public class Synchronizer {
-    
-    private boolean firstVoiceFlag;
+import gui.GlavniProzor;
+
+public class Synchronizer1 {
+	private boolean firstVoiceFlag;
     private boolean secondVoiceFlag;
     private boolean backVoiceFlag;
+    private GlavniProzor gp;
 
-    public Synchronizer(boolean firstVoiceFlag, boolean secondVoiceFlag,boolean backVoiceFlag) {
+    public Synchronizer1(boolean firstVoiceFlag, boolean secondVoiceFlag,boolean backVoiceFlag,GlavniProzor gp) {
         super();
         this.firstVoiceFlag = firstVoiceFlag;
         this.secondVoiceFlag = secondVoiceFlag;
         this.backVoiceFlag = backVoiceFlag;
+        this.gp = gp;
     }
     
     public synchronized void singFirstVoice(String lyrics, int delay) {
@@ -54,7 +53,9 @@ public class Synchronizer {
     }
     
     private void sing(String lyrics, int delay) {
-        System.out.println(lyrics);
+    	String s = gp.textArea.getText()+"\n";
+    	s += lyrics;
+        gp.textArea.setText(s);
         try {
             wait(delay);
         } catch (InterruptedException e) {
@@ -74,4 +75,3 @@ public class Synchronizer {
         notifyAll();
     }
 }
-

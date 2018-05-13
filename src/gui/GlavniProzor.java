@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import test.Test;
+
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
@@ -15,12 +18,12 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class GlavniProzor extends JFrame {
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
 	private JPanel panel;
 	private JLabel lblBecauseTheNight;
 	private JButton btnStart;
@@ -32,6 +35,8 @@ public class GlavniProzor extends JFrame {
 	private JButton button;
 	private JButton button_1;
 	private JButton btnStop_1;
+	private Test t = new Test(this);
+	public JTextPane textArea;
 
 	/**
 	 * Launch the application.
@@ -53,7 +58,6 @@ public class GlavniProzor extends JFrame {
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 470, 426);
 		contentPane = new JPanel();
@@ -67,17 +71,9 @@ public class GlavniProzor extends JFrame {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
 			scrollPane.setPreferredSize(new Dimension(2, 100));
-			scrollPane.setViewportView(getTextArea());
+			scrollPane.setViewportView(getTextPane());
 		}
 		return scrollPane;
-	}
-	private JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea();
-			textArea.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-			textArea.setPreferredSize(new Dimension(4, 100));
-		}
-		return textArea;
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -108,6 +104,7 @@ public class GlavniProzor extends JFrame {
 			btnStart = new JButton("START");
 			btnStart.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					t.pokreni();
 				}
 			});
 			btnStart.setBounds(24, 46, 157, 39);
@@ -119,6 +116,7 @@ public class GlavniProzor extends JFrame {
 			btnStop = new JButton("STOP");
 			btnStop.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					t.stop();
 				}
 			});
 			btnStop.setBounds(261, 46, 157, 39);
@@ -149,6 +147,11 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnStart_1() {
 		if (btnStart_1 == null) {
 			btnStart_1 = new JButton("Start");
+			btnStart_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				t.pokreniPattiSmith();
+				}
+			});
 			btnStart_1.setBounds(168, 145, 97, 25);
 		}
 		return btnStart_1;
@@ -156,6 +159,11 @@ public class GlavniProzor extends JFrame {
 	private JButton getButton() {
 		if (button == null) {
 			button = new JButton("Start");
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				t.pokrenibruceSpringsteen();
+				}
+			});
 			button.setBounds(168, 174, 97, 25);
 		}
 		return button;
@@ -163,6 +171,11 @@ public class GlavniProzor extends JFrame {
 	private JButton getButton_1() {
 		if (button_1 == null) {
 			button_1 = new JButton("Start");
+			button_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					t.pokrenibackVoice();
+				}
+			});
 			button_1.setBounds(168, 203, 97, 25);
 		}
 		return button_1;
@@ -170,8 +183,19 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnStop_1() {
 		if (btnStop_1 == null) {
 			btnStop_1 = new JButton("STOP");
+			btnStop_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					t.stop();
+				}
+			});
 			btnStop_1.setBounds(302, 145, 116, 78);
 		}
 		return btnStop_1;
+	}
+	private JTextPane getTextPane() {
+		if (textArea == null) {
+			textArea = new JTextPane();
+		}
+		return textArea;
 	}
 }
