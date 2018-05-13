@@ -60,7 +60,7 @@ public class Text extends Thread {
 					sing(performance.getLyrics(), performance.getDelay());
 				} else if (this.voice == Voice.SECOND) {
 					sing(performance.getLyrics(), performance.getDelay());
-				} else {
+				} else if(this.voice == Voice.BACKGROUND){
 					sing(performance.getLyrics(), performance.getDelay());
 				}
 			} else {

@@ -95,8 +95,8 @@ public class Test {
 			pattiSmith1.setStopIt(true);
 		if (bruceSpringsteen1 != null)
 			bruceSpringsteen1.setStopIt(true);
-		if (backVoice != null)
-			backVoice.setStopIt(true);
+		if (backVoice1 != null)
+			backVoice1.setStopIt(true);
 	}
 
 	public void pokreniPattiSmith() {
